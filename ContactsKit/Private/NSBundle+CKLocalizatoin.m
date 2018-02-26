@@ -24,6 +24,7 @@
 //
 
 #import "NSBundle+CKLocalizatoin.h"
+#import "CKAddress.h"
 
 @implementation NSBundle (CKLocalizatoin)
 
@@ -34,7 +35,8 @@
     dispatch_once(&onceToken, ^{
         
         // Set ContactsKit.bundle
-        NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"ContactsKit" withExtension:@"bundle"];
+        NSBundle *contactsKitBundle = [NSBundle bundleForClass:[CKAddress class]];
+        NSURL *bundleURL = [contactsKitBundle URLForResource:@"ContactsKit" withExtension:@"bundle"];
         NSAssert(bundleURL, @"ContactsKit.bundle not found, add bundle to the project.");
         bundle = [NSBundle bundleWithURL:bundleURL];
     });
